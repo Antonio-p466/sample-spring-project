@@ -11,10 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import taco_cloud.data.IngredientRepository;
 import taco_cloud.data.OrderRepository;
+import taco_cloud.data.UserRepository;
 
 @WebMvcTest
 public class HomeControllerTest {
@@ -28,7 +31,14 @@ public class HomeControllerTest {
     @MockitoBean
     private OrderRepository orderRepo;
 
+    @MockitoBean
+    private UserRepository userRepo;
+
+    @MockitoBean
+    private PasswordEncoder passwordEncoder;
+
     @Test
+    @WithMockUser
     public void testHomePage() throws Exception {
         mockMvc.perform(get("/"))
             .andExpect(status().isOk())
