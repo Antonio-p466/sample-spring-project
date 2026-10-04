@@ -11,11 +11,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+
+import taco_cloud.data.IngredientRepository;
+import taco_cloud.data.OrderRepository;
+
 @WebMvcTest
 public class HomeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockitoBean
+    private IngredientRepository ingredientRepo;
+
+    @MockitoBean
+    private OrderRepository orderRepo;
 
     @Test
     public void testHomePage() throws Exception {
