@@ -12,11 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+
+import taco_cloud.data.IngredientRepository;
+
 @WebMvcTest(DesignTacoController.class)
 public class DesignTacoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockitoBean
+    private IngredientRepository ingredientRepo;
 
     @Test
     public void shouldDisplayDesignForm() throws Exception {
